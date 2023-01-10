@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2 Exercise</title>
+</head>
+<body>
+    <h2>FizzBuzz</h2>
+    
+    <div>
+        <label for="fizzbuzz">Enter a number </label>
+        <input id="fizzbuzz" type="number" >
+        <button onclick="fizzbuzz()">Submit</button>
+    </div>
+    <p id="output"> </p>
+    <br>
+    <hr>
+
+    <h2>Calculator</h2>
+    <div id="cal">
+        <div id="display">0</div>
+        <button onclick="calculate(9)">9</button>
+        <button onclick="calculate(8)">8</button>
+        <button onclick="calculate(7)">7</button>
+        <button onclick="calculate(6)">6</button>
+        <button onclick="calculate(5)">5</button>
+        <button onclick="calculate(4)">4</button>
+        <button onclick="calculate(3)">3</button>
+        <button onclick="calculate(2)">2</button>
+        <button onclick="calculate(1)">1</button>
+        <button onclick="calculate(0)">0</button>
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('-')">-</button>
+        <button onclick="calculate('*')">*</button>
+        <button onclick="calculate('/')">/</button>
+        <button onclick="calculate('=')">=</button>
+        <button onclick="calculate('c')">c</button>
+    </div>
+    
+    
+    <script>
+        // FizzBuzz
+        function fizzbuzz(){
+            let input = document.getElementById("fizzbuzz").value;
+            const output = document.getElementById("output");
+            console.log(input)
+            document.getElementById("fizzbuzz").value="";
+            output.innerText = input;
+
+            if(input % 15 === 0) output.innerText = "FizzBuzz"
+            else if (input % 5 === 0) output.innerText = "Buzz"
+            else if (input % 3 === 0) output.innerText = "Fizz"
+            else output.innerText = input;   
+        }
+        
+        // Calculator part 
+        let firstNum=0, secondNum=0;
+        let operator = ''
+        let secNum = false;
+        function calculate(value){
+            const display = document.getElementById("display");
+
+            if(value ==='-' || value ==='+' || value ==='*' ||value ==='/'){
+                if(secNum){
+                    if(operator === '+'){
+                        firstNum = firstNum + secondNum ;
+                        secondNum = 0;
+                    }   
+                    else if(operator === '-'){
+                        firstNum = firstNum - secondNum ;
+                        secondNum = 0;
+                    }
+                    else if(operator === '*'){
+                        firstNum = firstNum * secondNum ;
+                        secondNum = 0;
+                    }
+                    else if(operator === '/'){
+                        firstNum = firstNum / secondNum ;
+                        secondNum = 0;
+                    }  
+                }
+                operator = value
+                display.innerText = value;
+                secNum = true;
+
+            }
+            else if(value === '='){
+                if(operator === '+'){
+                    firstNum = firstNum + secondNum ;
+                    secondNum = 0;
+                }
+                else if(operator === '-'){
+                    firstNum = firstNum - secondNum ;
+                    secondNum = 0;
+                }
+                else if(operator === '*'){
+                    firstNum = firstNum * secondNum ;
+                    secondNum = 0;
+                }
+                else if(operator === '/'){
+                    firstNum = firstNum / secondNum ;
+                    secondNum = 0;
+                }   
+                display.innerText = firstNum;
+                operator = '=';
+                console.log(firstNum);
+            }
+            else if(value === 'c'){
+                firstNum=0, 
+                secondNum=0;
+                operator = '';
+                secNum = false;
+                display.innerText = 0;
+            }
+            else {
+                if(operator === '='){
+                    firstNum=0, 
+                    operator = '';
+                    secNum = false;
+                }
+                if(!secNum){
+                    firstNum = firstNum * 10 + value;
+                    display.innerText = firstNum;
+                }
+                else {
+                    secondNum = secondNum * 10 + value;
+                    display.innerText = secondNum;
+                }
+                
+            }
+            console.log(value);
+        }
+    </script>
+</body>
+</html>
