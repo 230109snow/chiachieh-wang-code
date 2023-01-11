@@ -93,3 +93,78 @@ function calculate(value){
     }
     console.log(value);
 }
+
+// Calculation for Calculator 2.0
+
+// use to store the input value
+const input = [];
+// use to store the operator symbol 
+const symbol = [];
+// This variable store the equation 
+let equation ="";
+// Temporary variable that stores number;
+let temp = 0;
+// Display the equation and the result 
+const screen = document.getElementById("screen");
+
+function calculation(value){
+    function simpleCal(index,oper){
+        if(oper === "*")temp = input[index] * input[index+1];
+        else if (oper === "/") temp = input[index] / input[index+1];
+        else if (oper === "+") temp = input[index] + input[index+1];
+        else if (oper === "-") temp = input[index] - input[index+1];
+                
+        input.splice(index, 2, temp);
+        symbol.splice(index, 1);
+        // console.log(symbol);
+        // console.log(input);
+    }
+    function cal(){
+       while(symbol.length !== 0){
+        if(symbol.includes("*") || symbol.includes("/") ){
+            for(let k = 0; k < symbol.length; k++){
+                if(symbol[k] === "*" || symbol[k] === "/"){
+                    simpleCal(k, symbol[k]);
+                    break;                    
+                }                
+            }
+        }
+        else {
+            simpleCal(0, symbol[0]);
+        }
+       }
+    }
+
+    if(value ==='-' || value ==='+' || value ==='*' ||value ==='/'){
+        if(input.length !== 1 || symbol.length !== 0){
+          input.push(temp);
+        }
+        symbol.push(value);
+        equation += value;
+        temp = 0;        
+    }
+    else if( value === "="){
+        if(symbol.length !== 0)  input.push(temp);       
+        cal();
+        temp = 0;
+        equation = input[0];
+        screen.innerText = equation;
+    }
+    else if(value === "c"){
+        input.length = 0;
+        symbol.length = 0;
+        temp = 0;
+        equation = "0";
+    }
+    else {
+        if(equation === "0") equation = "";
+        equation += value;
+        temp = temp *10 + value;
+    }
+
+    screen.innerText = equation;
+    // console.log(equation);
+    // console.log(temp);
+    // console.log(symbol);
+    // console.log(input);
+}
