@@ -218,6 +218,8 @@ let missLetter = "";
 
 const hidden = [];
 
+const charHadEnter = [];
+
 
 // DOM elements
 
@@ -243,11 +245,21 @@ function generate(){
     target = words[randNum];
     console.log(target);
 
+    hidden.length = 0;
     for(let i = 0; i<target.length; i++){
         hidden.push(" _ ");
     }
+    missLetter = ""
+    attempt = 0;
+
+    charHadEnter.length = 0;
 
     console.log(hidden);
+    
+    wordDiv.innerText = hidden;
+    missesDiv.innerText = missLetter;
+
+    image.setAttribute("src","Hangman-0.png");
 }
 
 // Hangman function
@@ -258,23 +270,35 @@ function hangman(){
     console.log(char);
     document.getElementById("guess").value = ""; 
 
-    // Check the target string. Does it contain the char value?
-    if(target.includes(char)){
-        // Do something
-        let index = target.indexOf(char);
-        while(index !== -1){
-            hidden[index] = char;
-            target = target.replace(char,'*');
-            index = target.indexOf(char);
-        }       
+    if(charHadEnter.includes(char)){
+        alert("You already guess this letter, try another letter again");
     }
+
     else {
-        attempt ++;
-        missLetter = missLetter + " " + char;
-        image.setAttribute("src",imgs[attempt]);        
+         // Check the target string. Does it contain the char value?
+        if(target.includes(char)){
+            // Do something
+            let index = target.indexOf(char);
+            while(index !== -1){
+                hidden[index] = char;
+                target = target.replace(char,'*');
+                index = target.indexOf(char);
+            }       
+        }
+        else {
+            attempt ++;
+            missLetter = missLetter + " " + char;
+            image.setAttribute("src",imgs[attempt]);        
+        }
+        charHadEnter.push(char);
     }
+   
+
     wordDiv.innerText = hidden;
     missesDiv.innerText = missLetter;
+
+    
+    console.log(charHadEnter);
 
     if(!hidden.includes(" _ ")){
         image.setAttribute("src","win.png");
