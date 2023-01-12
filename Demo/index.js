@@ -215,6 +215,10 @@ const words = [ "abruptly", "absurd", "abyss", "affix", "askew", "avenue", "awkw
 let word = "";
 
 let missLetter = "";
+
+const hidden = [];
+
+
 // DOM elements
 
 const image = document.getElementById("image");
@@ -224,7 +228,7 @@ let target = "";
 
 // image array 
 
-const imgs = ["Hangman-0.png", "Hangman-1.png", "Hangman-2.png", "Hangman-3.png", "Hangman-4.png", "Hangman-5.png", "Hangman-6.png"]
+const imgs = ["Hangman-0.png", "Hangman-1.png", "Hangman-2.png", "Hangman-3.png", "Hangman-4.png", "Hangman-5.png", "Hangman-6.png","lose.jpg"]
 
 
 // Attempt variable
@@ -238,6 +242,12 @@ function generate(){
     console.log(randNum);
     target = words[randNum];
     console.log(target);
+
+    for(let i = 0; i<target.length; i++){
+        hidden.push(" _ ");
+    }
+
+    console.log(hidden);
 }
 
 // Hangman function
@@ -251,12 +261,22 @@ function hangman(){
     // Check the target string. Does it contain the char value?
     if(target.includes(char)){
         // Do something
+        let index = target.indexOf(char);
+        while(index !== -1){
+            hidden[index] = char;
+            target = target.replace(char,'*');
+            index = target.indexOf(char);
+        }       
     }
     else {
         attempt ++;
         missLetter = missLetter + " " + char;
-        image.setAttribute("src",imgs[attempt]);
+        image.setAttribute("src",imgs[attempt]);        
+    }
+    wordDiv.innerText = hidden;
+    missesDiv.innerText = missLetter;
 
-        missesDiv.innerText = missLetter;
+    if(!hidden.includes(" _ ")){
+        image.setAttribute("src","win.png");
     }
 }
