@@ -104,6 +104,7 @@ const symbol = [];
 let equation ="";
 // Temporary variable that stores number;
 let temp = 0;
+
 // Display the equation and the result 
 const screen = document.getElementById("screen");
 
@@ -136,15 +137,17 @@ function calculation(value){
     }
 
     if(value ==='-' || value ==='+' || value ==='*' ||value ==='/'){
+      
         if(input.length !== 1 || symbol.length !== 0){
-          input.push(temp);
-        }
+            input.push(temp);
+        }        
         symbol.push(value);
         equation += value;
-        temp = 0;        
+        temp = 0;
+         
     }
     else if( value === "="){
-        if(symbol.length !== 0)  input.push(temp);       
+        if(symbol.length !== 0)  input.push(temp);    
         cal();
         temp = 0;
         equation = input[0];
@@ -156,15 +159,25 @@ function calculation(value){
         temp = 0;
         equation = "0";
     }
+    else if(value === 'bp'){
+        console.log("enter Backspoace lei")
+        let lastIndex = equation.length-1;
+        let char = equation.charAt(lastIndex);
+        equation = equation.substring(0,lastIndex);
+
+        if(char === "+" || char === "-" || char === "*" || char === "/"){
+            symbol.pop();
+            temp = input.pop();
+        }
+        else{
+            temp = (temp - char) / 10 ;
+        }
+    }
+    // number goes here
     else {
         if(equation === "0") equation = "";
+        temp = temp *10 + value;           
         equation += value;
-        temp = temp *10 + value;
     }
-
     screen.innerText = equation;
-    // console.log(equation);
-    // console.log(temp);
-    // console.log(symbol);
-    // console.log(input);
 }
