@@ -87,6 +87,20 @@
     <hr>
 
     <h2>Hangman Game</h2>
+
+    <button class="start" onclick="generate()">Start</button>
+    <div class="hangman">
+        <label for="guess">Enter your guess ! </label>
+        <input id="guess" type="text" maxlength="1" >
+        <button onclick="hangman()">Guess</button>
+    </div>
+    <div class="image">
+        <img id="image" src="Hangman-0.png" />
+        <div> Word : <span id="word"> </span> </div>
+        <div> Misses : <span id="misses"> </span> </div>
+    </div>
+    
+
     
     <script src="index.js"></script>
 </body>
