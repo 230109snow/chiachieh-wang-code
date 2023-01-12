@@ -304,3 +304,5 @@ function hangman(){
         image.setAttribute("src","win.png");
     }
 }
+
+//console.log(3.3-1.1);
