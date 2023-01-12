@@ -117,8 +117,8 @@ function calculation(value){
                 
         input.splice(index, 2, temp);
         symbol.splice(index, 1);
-        // console.log(symbol);
-        // console.log(input);
+        console.log(symbol);
+        console.log(input);
     }
     function cal(){
        while(symbol.length !== 0){
@@ -147,7 +147,9 @@ function calculation(value){
          
     }
     else if( value === "="){
-        if(symbol.length !== 0)  input.push(temp);    
+        if(symbol.length !== 0)  input.push(temp); 
+        console.log(input);
+        console.log(symbol);
         cal();
         temp = 0;
         equation = input[0];
@@ -160,7 +162,6 @@ function calculation(value){
         equation = "0";
     }
     else if(value === 'bp'){
-        console.log("enter Backspoace lei")
         let lastIndex = equation.length-1;
         let char = equation.charAt(lastIndex);
         equation = equation.substring(0,lastIndex);
@@ -175,9 +176,21 @@ function calculation(value){
     }
     // number goes here
     else {
+        if(input.length === 1 && symbol.length ===0) {
+            equation = "";
+            input.length = 0;
+        }
         if(equation === "0") equation = "";
         temp = temp *10 + value;           
         equation += value;
     }
     screen.innerText = equation;
 }
+
+/// Hangman Game 
+
+// Words
+
+const words = [];
+
+let attemptLeft = 6;
