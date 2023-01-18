@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HangmanComponent {
 
+  imgSrc = "../../assets/images/Hangman0.png";
+
+
 }
