@@ -1,0 +1,15 @@
+<p>fetch-cat works!</p>
+<input type="number" [(ngModel)]="numCats">
+<button (click)="getCats()">Get Cats</button>
+<!-- Examples of pipes being used with string interpolation, used to format how you display your data -->
+<!-- {{catpics | json}}
+{{now | date: 'long'}} -->
+
+<div *ngFor="let pic of catpics">
+    <!-- [src] is an example of property binding -->
+    <img [src]="pic.url" width=200 alt="">
+</div>
+
+<div *ngFor="let x of arr">
+    <p>{{x}}</p>
+</div>
