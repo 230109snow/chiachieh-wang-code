@@ -7,12 +7,16 @@ import { NavComponent } from './nav/nav.component';
 import { FetchCatComponent } from './fetch-cat/fetch-cat.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CalculatorComponent } from './calculator/calculator.component';
+import { HangmanComponent } from './hangman/hangman.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    FetchCatComponent
+    FetchCatComponent,
+    CalculatorComponent,
+    HangmanComponent
   ],
   imports: [
     BrowserModule,

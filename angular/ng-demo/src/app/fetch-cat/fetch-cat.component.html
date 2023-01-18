@@ -10,6 +10,7 @@
     <img [src]="pic.url" width=200 alt="">
 </div>
 
-<div *ngFor="let x of arr">
+<div *ngFor="let x of arr; let i=index">
+    <h1>{{i}}</h1>
     <p>{{x}}</p>
 </div>
