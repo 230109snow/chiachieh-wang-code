@@ -1,15 +1,15 @@
 <p>hangman works!</p>
 <h2>Hangman Game</h2>
 
-<button class="start" onclick="generate()">Start</button>
+<button class="start" (click)="generate()">Start</button>
 <div class="hangman">
     <label for="guess">Enter your guess ! </label>
     <input id="guess" type="text" maxlength="1" >
-    <button onclick="hangman()">Guess</button>
+    <button (click)="hangman()">Guess</button>
 </div>
 <div class="image">
-    <img id="image" [src]=imgSrc alt="Hangman-0"/>
+    <img id="image" [src]=imgSrc alt="Hangman"/>
    
-    <div> Word : <span id="word"> </span> </div>
+    <div> Word : <span id="word" > </span> </div>
     <div> Misses : <span id="misses"> </span> </div>
 </div>
