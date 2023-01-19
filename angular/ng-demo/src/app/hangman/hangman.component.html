@@ -1,15 +1,24 @@
-<p>hangman works!</p>
+
 <h2>Hangman Game</h2>
 
-<button class="start" (click)="generate()">Start</button>
-<div class="hangman">
-    <label for="guess">Enter your guess ! </label>
+
+<div class="center">
+    <label for="guess">Enter your guess :  </label>
     <input id="guess" type="text" maxlength="1" >
+   
+</div>
+
+<div class="center">
+     <button class="start" (click)="generate()">Start New Game</button>
     <button (click)="hangman()">Guess</button>
 </div>
-<div class="image">
+    
+<div >
     <img id="image" [src]=imgSrc alt="Hangman"/>
-   
-    <div> Word : <span id="word" > </span> </div>
-    <div> Misses : <span id="misses"> </span> </div>
+</div>   
+    
+
+<div class="center">
+    <p> Word : <span id="word" [innerText]="hidden.toString()"> </span> </p>
+    <p> Misses : <span id="misses" [innerText]="missLetter"> </span> </p>
 </div>

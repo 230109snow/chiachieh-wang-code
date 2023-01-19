@@ -32,26 +32,23 @@ export class HangmanComponent {
                 "yachtsman", "yippee", "yoked", "youthful", "yummy", "zephyr", "zigzag", "zigzagging", "zilch", "zipper", "zodiac", "zombie"
               ];
   word : string = "";
-  missLetter : string = "x";
+  missLetter : string = "";
               
   hidden : string[] =[]; 
               
   charHadEnter : string[] = [];
 
-  wordDiv :  HTMLSpanElement = document.getElementById("word") as HTMLSpanElement;
-  missesDiv :  HTMLSpanElement = document.getElementById("misses") as HTMLSpanElement;
   target = "";
 
   attempt = 0
 
 
   generate(){
-    this.missesDiv = document.getElementById("misses") as HTMLSpanElement;
-    this.wordDiv  = document.getElementById("word") as HTMLSpanElement;
+
     let randNum = Math.floor(Math.random() * this.words.length);
-    console.log(randNum);
+
     this.target = this.words[randNum];
-    console.log(this.target);
+
 
     this.hidden.length = 0;;
     for(let i = 0; i<this.target.length; i++){
@@ -61,19 +58,13 @@ export class HangmanComponent {
     this.attempt = 0;
 
     this.charHadEnter.length = 0;
-
-    
-    console.log(this.hidden.length);
-    console.log(this.hidden[1]);
-    this.wordDiv.innerText = this.hidden.toString();
-    this.missesDiv.innerText = "";
+    this.imgSrc = "../../assets/images/Hangman0.png";
 
   
   }
   hangman(){
-    console.log("this button been clicked");
     const char =(<HTMLInputElement> document.getElementById("guess")).value;
-    console.log(char);
+
     (<HTMLInputElement>document.getElementById("guess")).value = ""; 
 
     if(this.charHadEnter.includes(char)){
@@ -87,7 +78,6 @@ export class HangmanComponent {
             let index = this.target.indexOf(char);
             while(index !== -1){
               this.hidden[index] = char;
-              console.log(this.hidden);
               this.target = this.target.replace(char,'*');
               index = this.target.indexOf(char);
             }       
@@ -95,22 +85,15 @@ export class HangmanComponent {
         else {
             this.attempt ++;
             this.imgSrc = `../../assets/images/Hangman${this.attempt}.png`
-            console.log(this.imgSrc);
             this.missLetter = this.missLetter + " " + char;
            
         }
         this.charHadEnter.push(char);
     }
-  
 
-    this.wordDiv.innerText = this.hidden.toString();
-    this.missesDiv.innerText = this.missLetter;
-
-    
-    console.log(this.charHadEnter);
-      if(!this.hidden.includes(" _ ")){
-        this.imgSrc = "../../assets/images/win.png";
-      }
+    if(!this.hidden.includes(" _ ")){
+      this.imgSrc = "../../assets/images/win.png";
+    }
   }
 
 }
