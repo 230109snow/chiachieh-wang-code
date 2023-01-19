@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { HangmanComponent } from './hangman/hangman.component';
+import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HangmanComponent } from './hangman/hangman.component';
     NavComponent,
     FetchCatComponent,
     CalculatorComponent,
-    HangmanComponent
+    HangmanComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,

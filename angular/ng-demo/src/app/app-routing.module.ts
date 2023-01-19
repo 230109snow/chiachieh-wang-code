@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { FetchCatComponent } from './fetch-cat/fetch-cat.component';
 import { HangmanComponent } from './hangman/hangman.component';
+import { WeatherComponent } from './weather/weather.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path : 'cats',
     component : FetchCatComponent
+  },
+  {
+    path : 'weather',
+    component : WeatherComponent
   }
 ];
 
