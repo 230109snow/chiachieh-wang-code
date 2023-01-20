@@ -48,7 +48,7 @@ export class HangmanComponent {
     let randNum = Math.floor(Math.random() * this.words.length);
 
     this.target = this.words[randNum];
-
+    console.log(this.target);
 
     this.hidden.length = 0;;
     for(let i = 0; i<this.target.length; i++){
