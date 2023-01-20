@@ -11,6 +11,7 @@ import { apikey } from './weatherKey';
 export class WeatherComponent {
   constructor(private http: HttpClient) {}
   cityName : string = "";
+  zipcode : string = "";
   weatherObj  : object[] = [];
 
   lat : number = 0;
@@ -18,26 +19,27 @@ export class WeatherComponent {
   getData(){  
     console.log("getData function called")
    
-
-   // this.cityName = (<HTMLInputElement>document.getElementById("city")).value ;
-    
     console.log(this.cityName);
-    console.log("Get data function called");
-    /**https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key} */
-    // API Key = "55eb1dc1b9f70cc7e36c5a220ea1d9ab"
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&appid=${apikey}&units=imperial`;
+    console.log(this.zipcode);
+    if(this.cityName === "" && this.zipcode === "") alert("You must enter a city namr or zipcode !");
+    const url = this.cityName ? `https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&appid=${apikey}&units=imperial`:
+                                `https://api.openweathermap.org/data/2.5/weather?zip=${this.zipcode},us&appid=${apikey}`;
+
+    console.log(url);                           
+    /**https://api.openweathermap.org/data/2.5/weather?zip=94040,us&appid={API key} */
+    
     this.http.get(url).subscribe( (data : any) => {
       console.log(data);
 
       const weatherDetail = {
         city : data.name,
         country  : data.sys.country,
-        temp : data.main.temp,
+        description : data.weather[0].description,
         feel : data.main.feels_like,
         humidity : data.main.humidity,
-        pressure : data.main.pressure,
-        icon : data.weather[0].icon,
-        description : data.weather[0].description,   
+        icon : data.weather[0].icon,        
+        pressure : data.main.pressure,        
+        temp : data.main.temp,   
         windSpeed : data.wind.speed
       }
 
@@ -45,6 +47,8 @@ export class WeatherComponent {
       console.log(weatherDetail);
 
       this.weatherObj.push(weatherDetail);
+
+      console.log(this.weatherObj.length);
 
       // console.log(this.weatherObj[0]);
       // this.lat = data.coord.lat;
