@@ -19,6 +19,9 @@
                 <button class="w3-button w3-teal" (click)="showForecast()" [innerText]="showText"></button>
             </div>
         </div>
-        <app-weather-forecast *ngIf="showInfo"></app-weather-forecast>
+        <div *ngIf="showInfo" >
+                <app-weather-forecast  [fcData]="forecastData"></app-weather-forecast>
+        </div>
+        
     </div>
 </div>
