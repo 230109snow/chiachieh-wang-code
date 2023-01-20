@@ -20,8 +20,8 @@
 
 <hr>
 <br>
-<div class="w3-container" style="display:flex; flex-flow: row wrap;">
-    <app-weather-card *ngIf="weatherObj.length"> </app-weather-card>
+<div class="w3-container" style="display:flex; flex-flow: row wrap;" *ngIf="weatherObj.length">
+    <app-weather-card [weatherData]="weatherObj"> </app-weather-card>
 </div>
 
 <hr>    

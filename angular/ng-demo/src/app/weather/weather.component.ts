@@ -23,12 +23,12 @@ export class WeatherComponent {
     console.log(this.zipcode);
     if(this.cityName === "" && this.zipcode === "") alert("You must enter a city namr or zipcode !");
     const url = this.cityName ? `https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&appid=${apikey}&units=imperial`:
-                                `https://api.openweathermap.org/data/2.5/weather?zip=${this.zipcode},us&appid=${apikey}`;
+                                `https://api.openweathermap.org/data/2.5/weather?zip=${this.zipcode},us&appid=${apikey}&units=imperial`;
 
     console.log(url);                           
     /**https://api.openweathermap.org/data/2.5/weather?zip=94040,us&appid={API key} */
     
-    this.http.get(url).subscribe( (data : any) => {
+    this.http.get(url).subscribe( { next : (data : any) => {
       console.log(data);
 
       const weatherDetail = {
@@ -37,7 +37,7 @@ export class WeatherComponent {
         description : data.weather[0].description,
         feel : data.main.feels_like,
         humidity : data.main.humidity,
-        icon : data.weather[0].icon,        
+        icon : `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,        
         pressure : data.main.pressure,        
         temp : data.main.temp,   
         windSpeed : data.wind.speed
@@ -50,26 +50,14 @@ export class WeatherComponent {
 
       console.log(this.weatherObj.length);
 
-      // console.log(this.weatherObj[0]);
-      // this.lat = data.coord.lat;
-      // this.lon = data.coord.lon;
-
-      // console.log("lat : " + this.lat + " \nlon : " +this.lon);
-
-      // this.getforecast(this.lat, this.lon)
-      //  const obj : any = data;
-      // // console.log( typeof data)
-      // console.log(data.main.temp)
-      // this.weatherObj.push(data);
-      
-      // // console.log(this.weatherObj.length)
-      // // console.log(this.weatherObj)
-
-      // console.log(obj.sys.country)
-      // console.log(this.weatherObj[0].sys.country)
-
-    
+ 
+      }, error : (err) => {
+        console.log(err);
+        alert("Make sure you enter a valid city name or a valid zipcode")
+      }
     })
+    this.cityName="";
+    this.zipcode=""
   }
   // getforecast(lat: number, lon: number) {
   //   console.log("getForecast function called")
@@ -96,3 +84,20 @@ export class WeatherComponent {
 
 
 
+     // console.log(this.weatherObj[0]);
+      // this.lat = data.coord.lat;
+      // this.lon = data.coord.lon;
+
+      // console.log("lat : " + this.lat + " \nlon : " +this.lon);
+
+      // this.getforecast(this.lat, this.lon)
+      //  const obj : any = data;
+      // // console.log( typeof data)
+      // console.log(data.main.temp)
+      // this.weatherObj.push(data);
+      
+      // // console.log(this.weatherObj.length)
+      // // console.log(this.weatherObj)
+
+      // console.log(obj.sys.country)
+      // console.log(this.weatherObj[0].sys.country)
