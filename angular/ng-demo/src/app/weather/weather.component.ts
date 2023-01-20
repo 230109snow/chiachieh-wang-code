@@ -37,7 +37,9 @@ export class WeatherComponent {
         description : data.weather[0].description,
         feel : data.main.feels_like,
         humidity : data.main.humidity,
-        icon : `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,        
+        icon : `http://openweathermap.org/img/w/${data.weather[0].icon}.png`, 
+        latitude : data.coord.lat,       
+        longitude : data.coord.lon,     
         pressure : data.main.pressure,        
         temp : data.main.temp,   
         windSpeed : data.wind.speed
@@ -46,7 +48,7 @@ export class WeatherComponent {
 
       console.log(weatherDetail);
 
-      this.weatherObj.push(weatherDetail);
+      this.weatherObj.unshift(weatherDetail);
 
       console.log(this.weatherObj.length);
 

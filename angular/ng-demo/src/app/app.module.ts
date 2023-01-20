@@ -11,6 +11,7 @@ import { CalculatorComponent } from './calculator/calculator.component';
 import { HangmanComponent } from './hangman/hangman.component';
 import { WeatherComponent } from './weather/weather.component';
 import { WeatherCardComponent } from './weather/weather-card/weather-card.component';
+import { WeatherForecastComponent } from './weather/weather-forecast/weather-forecast.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { WeatherCardComponent } from './weather/weather-card/weather-card.compon
     CalculatorComponent,
     HangmanComponent,
     WeatherComponent,
-    WeatherCardComponent
+    WeatherCardComponent,
+    WeatherForecastComponent
   ],
   imports: [
     BrowserModule,

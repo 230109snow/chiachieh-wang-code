@@ -6,21 +6,21 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./weather-card.component.css']
 })
 export class WeatherCardComponent {
-  @Input() weatherData : any[] = [];
+  @Input() weatherData : any = {};
+  showInfo = false;
+  showText = "+ Show forecast info";
+
   ngOnInit(){
-    console.log("It is working");
+    console.log("card created ! ")
     console.log(this.weatherData);
-    console.log(this.weatherData.length);
+
   }
-  showData(){
-    console.log("showe data working");
-    console.log(this.weatherData.length);
-    for(let i in this.weatherData){
-      console.log("i ==== " + i);
-    }
-    for(let i of this.weatherData){
-      console.log("forOf ==== " + i.city);
-    }
+  showForecast(){
+    console.log("showe forecast working");
+
+    this.showInfo = !this.showInfo;
+    this.showText = this.showInfo? "- Hide forecast info" : "+ Show forecast info"
+  
   }
 
 }
