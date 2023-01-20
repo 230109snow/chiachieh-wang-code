@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { HangmanComponent } from './hangman/hangman.component';
 import { WeatherComponent } from './weather/weather.component';
+import { WeatherCardComponent } from './weather/weather-card/weather-card.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { WeatherComponent } from './weather/weather.component';
     FetchCatComponent,
     CalculatorComponent,
     HangmanComponent,
-    WeatherComponent
+    WeatherComponent,
+    WeatherCardComponent
   ],
   imports: [
     BrowserModule,
