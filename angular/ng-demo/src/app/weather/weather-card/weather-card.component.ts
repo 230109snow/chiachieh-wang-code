@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { apikey } from '../weatherKey';
 
@@ -14,6 +14,15 @@ export class WeatherCardComponent {
   forecastData : object[] = [];
   showInfo = false;
   showText = "+ Show forecast info";
+
+  
+  
+
+  @Output() delete = new EventEmitter<string>();
+
+  deleteObj( city : string){
+    this.delete.emit(city);
+  }
 
   showForecast(){
 

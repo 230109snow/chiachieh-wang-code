@@ -12,7 +12,7 @@ export class WeatherComponent {
   constructor(private http: HttpClient) {}
   cityName : string = "";
   zipcode : string = "";
-  weatherObj  : object[] = [];
+  weatherObj  : any[] = [];
 
   lat : number = 0;
   lon : number = 0;
@@ -47,6 +47,18 @@ export class WeatherComponent {
       this.cityName="";
       this.zipcode=""
     }
+  }
+  deleteWea(city : string){
+    console.log("doing something ");
+    console.log(city);
+    console.log(this.weatherObj[0]);
+    for(let i =0; i<this.weatherObj.length; i++){
+      if(this.weatherObj[i].city === city) {
+        this.weatherObj.splice(i,1);
+        break;
+      }
+    }
+
   }
 }
 
