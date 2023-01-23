@@ -1,2 +1,11 @@
 <p>pollution works!</p>
-<p> {{airPollData.co}}  </p>
+<p> {{airPollData.no2}}  </p>
+<p> {{airPollData.o3}}  </p>
+<p> {{airPollData.pm2_5}}  </p>
+<p> {{airPollData.pm10}}  </p>
+<!-- 
+   [ngClass] = "airPollData.no2 < 50 ? 'DarkGreen' :
+                airPollData.no2 < 100 ? 'lghtGreen' :
+                airPollData.no2 < 200 ? 'yellow' :
+                airPollData.no2 < 400 ? 'orange' : 'red'"
+ -->
