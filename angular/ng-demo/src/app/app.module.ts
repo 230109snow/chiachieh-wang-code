@@ -12,6 +12,7 @@ import { HangmanComponent } from './hangman/hangman.component';
 import { WeatherComponent } from './weather/weather.component';
 import { WeatherCardComponent } from './weather/weather-card/weather-card.component';
 import { WeatherForecastComponent } from './weather/weather-forecast/weather-forecast.component';
+import { PollutionComponent } from './weather/pollution/pollution.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { WeatherForecastComponent } from './weather/weather-forecast/weather-for
     HangmanComponent,
     WeatherComponent,
     WeatherCardComponent,
-    WeatherForecastComponent
+    WeatherForecastComponent,
+    PollutionComponent
   ],
   imports: [
     BrowserModule,
