@@ -17,9 +17,12 @@ export class WeatherCardComponent {
   showInfo = false;
   showText = "+ Show forecast info";
 // Air pollution
+  showAirP = false;
   pollutionText = "+ Show air pollution info";
 
-  showAirP = false;
+  airData : object = {};
+
+  
 
   
   
@@ -33,7 +36,7 @@ export class WeatherCardComponent {
   showForecast(){
 
     this.showInfo = !this.showInfo;
-    this.showText = this.showInfo? "- Hide forecast info" : "+ Show forecast info"
+    this.showText = this.showInfo? "- Hide forecast info" : "+ Show forecast info";
     if(!this.showInfo) {
       this.forecastData.length = 0;
     }
@@ -54,7 +57,26 @@ export class WeatherCardComponent {
   showPollution(){
     console.log("Air pollution")
     this.showAirP = !this.showAirP;
-    this.pollutionText = this.pollutionText? "- Hide air pollution info" : "+ Show air pollution info"
+    this.pollutionText = this.showAirP? "- Hide air pollution info" : "+ Show air pollution info";
+    console.log(this.pollutionText);
+    const airUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${this.weatherData.latitude}&lon=${this.weatherData.longitude}&appid=${apikey}`
+    this.http.get(airUrl).subscribe( (data : any) => {
+      console.log(data);
+      console.log(data.list);
+      console.log(data.list[0]);
+      console.log(data.list[0].components);
+      this.airData = data.list[0].components;
+      console.log(this.airData);
+      
+      
+      // this.airData = data[0].list[0].component;
+      // console.log(this.airData);
+    })
+
+
+    // this.showAirP = !this.showAirP;
+    // this.pollutionText = this.showAirP? "- Hide air pollution info" : "+ Show air pollution info";
+    // console.log(this.pollutionText);
     /**http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={API key} 
      * main.aqi Air Quality Index. Possible values: 1, 2, 3, 4, 5. Where 1 = Good, 2 = Fair, 3 = Moderate, 4 = Poor, 5 = Very Poor.
 components
