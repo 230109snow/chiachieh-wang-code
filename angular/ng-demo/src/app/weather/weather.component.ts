@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 
 import { apikey } from './weatherKey';
 
+
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
@@ -19,7 +20,7 @@ export class WeatherComponent {
   getData(){  
 
     if(this.cityName === "" && this.zipcode === "") alert("You must enter a city namr or zipcode !");
-    else{
+    else{     
       const url = this.cityName ? `https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&appid=${apikey}&units=imperial`:
                                   `https://api.openweathermap.org/data/2.5/weather?zip=${this.zipcode},us&appid=${apikey}&units=imperial`;
 
@@ -43,7 +44,7 @@ export class WeatherComponent {
         }, error : (err) => {
           alert("Make sure you enter a valid city name or a valid zipcode")
         }
-      })
+      }) 
       this.cityName="";
       this.zipcode=""
     }
