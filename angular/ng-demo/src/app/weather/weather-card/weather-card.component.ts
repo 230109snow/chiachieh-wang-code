@@ -19,13 +19,9 @@ export class WeatherCardComponent {
 // Air pollution
   showAirP = false;
   pollutionText = "+ Show air pollution info";
-
   airData : object = {};
 
-  
-
-  
-  
+  // Delete component 
 
   @Output() delete = new EventEmitter<number>();
 

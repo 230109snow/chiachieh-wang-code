@@ -7,8 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class PollutionComponent {
   @Input() airPollData : any = {};
-  ngOnInit(){
-    console.log("This Works air pollutions")
-    console.log(this.airPollData);
-  }
 }
